@@ -1,0 +1,112 @@
+-- MariaDB dump 10.17  Distrib 10.4.6-MariaDB, for Win64 (AMD64)
+--
+-- Host: localhost    Database: pts_db
+-- ------------------------------------------------------
+-- Server version	10.4.6-MariaDB
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `pos`
+--
+
+DROP TABLE IF EXISTS `pos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `pos` (
+  `pos_id` int(10) NOT NULL AUTO_INCREMENT,
+  `pos_name` varchar(20) DEFAULT NULL,
+  `pos_counter` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`pos_id`),
+  UNIQUE KEY `pos_id` (`pos_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `pos`
+--
+
+LOCK TABLES `pos` WRITE;
+/*!40000 ALTER TABLE `pos` DISABLE KEYS */;
+INSERT INTO `pos` VALUES (10,'POS12','Counter 26');
+/*!40000 ALTER TABLE `pos` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `pos_data`
+--
+
+DROP TABLE IF EXISTS `pos_data`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `pos_data` (
+  `pos_data_id` int(10) NOT NULL AUTO_INCREMENT,
+  `pos_id` int(10) DEFAULT NULL,
+  `date` varchar(20) DEFAULT NULL,
+  `remark` text DEFAULT NULL,
+  `status` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`pos_data_id`),
+  UNIQUE KEY `pos_data_id` (`pos_data_id`),
+  KEY `pos_id` (`pos_id`),
+  CONSTRAINT `pos_data_ibfk_1` FOREIGN KEY (`pos_id`) REFERENCES `pos` (`pos_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `pos_data`
+--
+
+LOCK TABLES `pos_data` WRITE;
+/*!40000 ALTER TABLE `pos_data` DISABLE KEYS */;
+INSERT INTO `pos_data` VALUES (6,10,'11/02/2019','Corrupt Hard disk','fixed 11/02/2019'),(7,10,'11/02/2019','hello','Need Replacement'),(8,10,'11/02/2019','sdf','Pending'),(9,10,'11/02/2019','sdfsd','Pending'),(10,10,'11/02/2019','dadada','Pending'),(11,10,'11/02/2019','joke only','fixed 11/02/2019'),(12,10,'11/02/2019','dfgdfg','Pending'),(13,10,'11/02/2019','hehehe','Pending'),(14,10,'11/02/2019','ggagagagag','fixed 11/03/2019'),(15,10,'11/02/2019','hackdog','fixed 11/02/2019'),(16,10,'11/02/2019','dgffdg','Pending'),(17,10,'11/02/2019','dfgdfgd','Pending'),(18,10,'11/02/2019','asdsad','Pending'),(19,10,'11/02/2019','sdfgsgds','Pending'),(20,10,'11/02/2019','dfgdfg','Need Replacement'),(21,10,'11/03/2019','adsf','Pending'),(22,10,'11/03/2019','FUCL','Pending');
+/*!40000 ALTER TABLE `pos_data` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `pos_ref_sched`
+--
+
+DROP TABLE IF EXISTS `pos_ref_sched`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `pos_ref_sched` (
+  `pos_ref_sched_id` int(10) NOT NULL AUTO_INCREMENT,
+  `pos_name` varchar(20) DEFAULT NULL,
+  `counter` varchar(20) NOT NULL,
+  `group_sched_ref` varchar(10) DEFAULT NULL,
+  `status` varchar(10) NOT NULL,
+  `date_formatted` varchar(30) NOT NULL,
+  PRIMARY KEY (`pos_ref_sched_id`),
+  UNIQUE KEY `pos_ref_sched_id` (`pos_ref_sched_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `pos_ref_sched`
+--
+
+LOCK TABLES `pos_ref_sched` WRITE;
+/*!40000 ALTER TABLE `pos_ref_sched` DISABLE KEYS */;
+INSERT INTO `pos_ref_sched` VALUES (1,'POS30','COUNTER 17','1','',''),(2,'POS31','COUNTER 17','1','formatted',''),(3,'POS33','COUNTER 15','1','formatted',''),(4,'POS04','COUNTER 12','1','formatted',''),(5,'POS17','COUNTER 19','1','formatted',''),(6,'POS10','COUNTER 21','1','formatted',''),(7,'POS01','COUNTER 24','1','formatted',''),(8,'POS14','COUNTER 37','1','formatted',''),(9,'POS13','COUNTER 35','1','formatted',''),(10,'POS06','COUNTER 12','1','formatted',''),(11,'POS02','COUNTER 12','2','',''),(12,'POS05','COUNTER 19','2','',''),(13,'POS34','COUNTER 17','2','',''),(14,'POS36','VHF','2','',''),(15,'POS16','COUNTER 24','2','',''),(16,'POS29','MALL AREA','2','',''),(17,'POS21','COUNTER 28','2','',''),(18,'POS26','COUNTER 35','2','',''),(19,'POS28','COUNTER 37','2','',''),(20,'POS23','COUNTER 32','2','',''),(21,'POS03','COUNTER 17','3','0',''),(22,'POS20','C OUNTER 19','3','0',''),(23,'POS07','C OUNTER 15','3','formatted',''),(24,'POS08','C OUNTER 12','3','formatted',''),(25,'POS18','C OUNTER 26','3','formatted',''),(26,'POS25','C OUNTER 21','3','formatted',''),(27,'POS12','C OUNTER 26','3','formatted',''),(28,'POS19','C OUNTER 35','3','formatted',''),(29,'POS32','C OUNTER 37','3','formatted',''),(30,'POS22','C OUNTER 32','3','formatted','');
+/*!40000 ALTER TABLE `pos_ref_sched` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2019-11-03 17:12:16
